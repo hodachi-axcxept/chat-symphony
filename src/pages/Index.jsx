@@ -26,17 +26,17 @@ const Index = () => {
       setGpt4Response(gpt4InitialResponse);
 
       // Step 2: Call Claude
-      const claudePrompt = `GPT-4 provided the following guidance: "${gpt4InitialResponse}". Based on this, please answer the user's question: "${question}"`;
+      const claudePrompt = `In Japanese, GPT-4o provided the following guidance: "${gpt4InitialResponse}". Based on this, please answer the user's question: "${question}"`;
       const claudeResp = await callClaude(claudeKey, claudePrompt);
       setClaudeResponse(claudeResp);
 
       // Step 3: Call Gemini
-      const geminiPrompt = `Claude responded with: "${claudeResp}". Please provide a critical reflection on this response to the original question: "${question}"`;
+      const geminiPrompt = `In Japanese, Claude responded with: "${claudeResp}". Please provide a critical reflection on this response to the original question: "${question}"`;
       const geminiResp = await callGemini(geminiKey, geminiPrompt);
       setGeminiResponse(geminiResp);
 
       // Step 4: Final GPT-4 summary
-      const finalPrompt = `Summarize the following conversation and provide a final response to the user:
+      const finalPrompt = `In Japanese, Summarize the following conversation and provide a final response to the user:
         User question: "${question}"
         GPT-4 initial response: "${gpt4InitialResponse}"
         Claude response: "${claudeResp}"

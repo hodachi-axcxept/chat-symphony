@@ -9,9 +9,9 @@ export const callOpenAI = async (apiKey, message, isInitial = false) => {
         messages: [
           {
             role: "system",
-            content: isInitial ? "You are a helpful assistant. Provide a step-by-step approach to answer the user's question accurately and from multiple angles." : "You are a helpful assistant. Summarize the conversation and provide a final response."
+            content: isInitial ? "あなたはCoTのプロフェッショナルです。ユーザーからの質問に対して、回答するのではなく、CoTを用いて回答を明確にするためのステップを提供します。" : "gpt-4oと、Claude、geminiが会話した内容が返ってきました。あなたはそれらを受け取って、フレンドリーに回答してあげてください。"
           },
-          { role: "user", content: message }
+          { role: "user", content: "ユーザーからの質問とこれまでの会話：" + message }
         ]
       },
       {
@@ -33,22 +33,21 @@ export const callClaude = async (apiKey, message) => {
     const response = await axios.post(
       'https://api.anthropic.com/v1/messages',
       {
-        model: "claude-3-5-sonnet-20240620",
+        model: "claude-3-sonnet-20240229",
         max_tokens: 1024,
         messages: [{ role: "user", content: message }]
       },
       {
         headers: {
           'Content-Type': 'application/json',
-          'X-API-Key': apiKey,
+          'x-api-key': apiKey,
           'anthropic-version': '2023-06-01'
         }
       }
     );
     return response.data.content[0].text;
   } catch (error) {
-    console.error('Error calling Claude API:', error);
-    return 'Error: Unable to get response from Claude';
+    return `Error: ${error.message}`;
   }
 };
 
