@@ -63,8 +63,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4">
-      <h1 className="text-3xl font-bold mb-4 text-center">Multi-AI Chat Bot</h1>
+    <div className="min-h-screen bg-gray-100 p-4 text-sm">
+      <h1 className="text-2xl font-bold mb-4 text-center">Multi-AI Chat Bot</h1>
       <div className="grid grid-cols-3 gap-4 mb-4">
         <ApiKeyInput label="OpenAI API Key" value={openAIKey} onChange={setOpenAIKey} />
         <ApiKeyInput label="Claude API Key" value={claudeKey} onChange={setClaudeKey} />
