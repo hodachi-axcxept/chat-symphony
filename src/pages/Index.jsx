@@ -32,7 +32,7 @@ const Index = () => {
       このステップに従い、ユーザーの質問に答えてください： 
       "${question}"`;
 
-      const claudeResp = await callGemini(geminiKey, claudePrompt);
+      const claudeResp = await callClaude(claudeKey, claudePrompt);
       setClaudeResponse(claudeResp);
 
       // Step 3: Call Gemini
@@ -63,17 +63,17 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-4 text-sm">
-      <h1 className="text-2xl font-bold mb-4 text-center">Multi-AI Chat Bot</h1>
-      <div className="grid grid-cols-3 gap-4 mb-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-100 to-blue-200 p-6 text-sm">
+      <h1 className="text-3xl font-bold mb-6 text-center text-purple-800 shadow-text">Multi-AI Chat Symphony</h1>
+      <div className="grid grid-cols-3 gap-4 mb-6">
         <ApiKeyInput label="OpenAI API Key" value={openAIKey} onChange={setOpenAIKey} />
         <ApiKeyInput label="Claude API Key" value={claudeKey} onChange={setClaudeKey} />
         <ApiKeyInput label="Gemini API Key" value={geminiKey} onChange={setGeminiKey} />
       </div>
-      <div className="grid grid-cols-2 gap-4 mb-4">
-        <ChatArea title="GPT-4o" response={gpt4Response} />
-        <ChatArea title="GPT-4o-mini" response={claudeResponse} />
-        <ChatArea title="Gemini Flash" response={geminiResponse} />
+      <div className="grid grid-cols-2 gap-6 mb-6">
+        <ChatArea title="GPT-4o" response={gpt4Response} bgColor="bg-green-100" borderColor="border-green-400" />
+        <ChatArea title="Claude" response={claudeResponse} bgColor="bg-blue-100" borderColor="border-blue-400" />
+        <ChatArea title="Gemini Flash" response={geminiResponse} bgColor="bg-yellow-100" borderColor="border-yellow-400" />
         <FinalResponse response={finalResponse} />
       </div>
       <UserInput onSubmit={handleUserInput} isLoading={isLoading} />

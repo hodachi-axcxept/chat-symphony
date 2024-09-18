@@ -12,18 +12,18 @@ const UserInput = ({ onSubmit, isLoading }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-4">
+    <form onSubmit={handleSubmit} className="mt-6">
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
         placeholder="Ask your question here..."
-        className="w-full p-2 border border-gray-300 rounded text-sm"
+        className="w-full p-3 border-2 border-purple-300 rounded-lg text-sm focus:outline-none focus:border-purple-500 transition duration-300"
         disabled={isLoading}
       />
       <button 
         type="submit" 
-        className={`mt-2 bg-blue-500 text-white p-2 rounded text-sm ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
+        className={`mt-3 w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white p-3 rounded-lg text-sm font-semibold transition duration-300 ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:from-purple-600 hover:to-blue-600'}`}
         disabled={isLoading}
       >
         {isLoading ? 'Processing...' : 'Submit'}
