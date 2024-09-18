@@ -1,5 +1,4 @@
 import axios from 'axios';
-import Anthropic from '@anthropic-ai/sdk';
 
 export const callOpenAI = async (apiKey, message, isInitial = false) => {
   try {
