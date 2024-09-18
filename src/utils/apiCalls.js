@@ -55,16 +55,13 @@ export const callClaude = async (apiKey, message) => {
 export const callGemini = async (apiKey, message) => {
   try {
     const response = await axios.post(
-      'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent',
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
       {
         contents: [{ parts: [{ text: message }] }]
       },
       {
         headers: {
           'Content-Type': 'application/json',
-        },
-        params: {
-          key: apiKey
         }
       }
     );
