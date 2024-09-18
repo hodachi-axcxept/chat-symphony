@@ -32,7 +32,7 @@ const Index = () => {
       このステップに従い、ユーザーの質問に答えてください： 
       "${question}"`;
 
-      const claudeResp = await callClaude(claudeKey, claudePrompt);
+      const claudeResp = await callGemini(geminiKey, claudePrompt);
       setClaudeResponse(claudeResp);
 
       // Step 3: Call Gemini
