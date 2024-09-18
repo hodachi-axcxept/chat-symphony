@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
-const UserInput = ({ onSubmit }) => {
+const UserInput = ({ onSubmit, isLoading }) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(input);
-    setInput('');
+    if (!isLoading && input.trim()) {
+      onSubmit(input);
+      setInput('');
+    }
   };
 
   return (
@@ -17,9 +19,14 @@ const UserInput = ({ onSubmit }) => {
         onChange={(e) => setInput(e.target.value)}
         placeholder="Ask your question here..."
         className="w-full p-2 border border-gray-300 rounded"
+        disabled={isLoading}
       />
-      <button type="submit" className="mt-2 bg-blue-500 text-white p-2 rounded">
-        Submit
+      <button 
+        type="submit" 
+        className={`mt-2 bg-blue-500 text-white p-2 rounded ${isLoading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'}`}
+        disabled={isLoading}
+      >
+        {isLoading ? 'Processing...' : 'Submit'}
       </button>
     </form>
   );
