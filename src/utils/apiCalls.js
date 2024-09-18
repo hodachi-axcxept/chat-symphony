@@ -40,7 +40,8 @@ export const callClaude = async (apiKey, message) => {
       {
         headers: {
           'Content-Type': 'application/json',
-          'X-API-Key': apiKey
+          'X-API-Key': apiKey,
+          'anthropic-version': '2023-06-01'
         }
       }
     );
@@ -61,7 +62,6 @@ export const callGemini = async (apiKey, message) => {
       {
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${apiKey}`
         },
         params: {
           key: apiKey
