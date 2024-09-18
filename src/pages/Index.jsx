@@ -32,7 +32,7 @@ const Index = () => {
       このステップに従い、ユーザーの質問に答えてください： 
       "${question}"`;
 
-      const claudeResp = await callClaude(claudeKey, claudePrompt);
+      const claudeResp = await callGemini(geminiKey, claudePrompt);
       setClaudeResponse(claudeResp);
 
       // Step 3: Call Gemini
@@ -72,7 +72,7 @@ const Index = () => {
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
         <ChatArea title="GPT-4o" response={gpt4Response} />
-        <ChatArea title="Claude 3.5 Sonnet" response={claudeResponse} />
+        <ChatArea title="GPT-4o-mini" response={claudeResponse} />
         <ChatArea title="Gemini Flash" response={geminiResponse} />
         <FinalResponse response={finalResponse} />
       </div>
