@@ -71,7 +71,7 @@ const Index = () => {
         <ApiKeyInput label="Gemini API Key" value={geminiKey} onChange={setGeminiKey} />
       </div>
       <div className="grid grid-cols-2 gap-4 mb-4">
-        <ChatArea title="GPT-4" response={gpt4Response} />
+        <ChatArea title="GPT-4o" response={gpt4Response} />
         <ChatArea title="Claude 3.5 Sonnet" response={claudeResponse} />
         <ChatArea title="Gemini Flash" response={geminiResponse} />
         <FinalResponse response={finalResponse} />
