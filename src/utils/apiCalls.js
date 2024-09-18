@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Anthropic from '@anthropic-ai/sdk';
 
 export const callOpenAI = async (apiKey, message, isInitial = false) => {
   try {
@@ -30,24 +31,21 @@ export const callOpenAI = async (apiKey, message, isInitial = false) => {
 
 export const callClaude = async (apiKey, message) => {
   try {
-    const response = await axios.post(
-      'https://api.anthropic.com/v1/messages',
-      {
-        model: "claude-3-sonnet-20240229",
-        max_tokens: 1024,
-        messages: [{ role: "user", content: message }]
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01'
-        }
-      }
-    );
-    return response.data.content[0].text;
+    // Anthropicインスタンスを作成
+    const anthropic = new Anthropic({
+      apiKey: apiKey,  // APIキーを設定
+    });
+
+    // メッセージの送信処理
+    const response = await anthropic.messages.create({
+      model: "claude-3-5-sonnet-20240620",  // モデルのバージョンを指定
+      max_tokens: 1024,  // 最大トークン数
+      messages: [{ role: "user", content: message }]  // ユーザーのメッセージ
+    });
+
+    return response.content[0].text;  // 取得したレスポンスを返す
   } catch (error) {
-    return `Error: ${error.message}`;
+    return `Error: ${error.message}`;  // エラーメッセージを返す
   }
 };
 

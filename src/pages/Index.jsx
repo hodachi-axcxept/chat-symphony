@@ -26,21 +26,32 @@ const Index = () => {
       setGpt4Response(gpt4InitialResponse);
 
       // Step 2: Call Claude
-      const claudePrompt = `In Japanese, GPT-4o provided the following guidance: "${gpt4InitialResponse}". Based on this, please answer the user's question: "${question}"`;
+      const claudePrompt = `ユーザーの回答にこたえる方法をGPT-4oは検討し、次のステップに従うように指示した。 
+      "${gpt4InitialResponse}". 
+      
+      このステップに従い、ユーザーの質問に答えてください： 
+      "${question}"`;
+
       const claudeResp = await callClaude(claudeKey, claudePrompt);
       setClaudeResponse(claudeResp);
 
       // Step 3: Call Gemini
-      const geminiPrompt = `In Japanese, Claude responded with: "${claudeResp}". Please provide a critical reflection on this response to the original question: "${question}"`;
+      const geminiPrompt = `ユーザーの質問： "${question}"。
+      
+      これに対しAnthropicのClaudeはこう答えた： 
+      "${claudeResp}". 
+      
+      この回答に対して批判的思考でリフレクションしなさい`;
       const geminiResp = await callGemini(geminiKey, geminiPrompt);
       setGeminiResponse(geminiResp);
 
       // Step 4: Final GPT-4 summary
-      const finalPrompt = `In Japanese, Summarize the following conversation and provide a final response to the user:
+      const finalPrompt = `次の会話を要約し、ユーザーに最終的な返答をする。:
         User question: "${question}"
         GPT-4 initial response: "${gpt4InitialResponse}"
         Claude response: "${claudeResp}"
         Gemini reflection: "${geminiResp}"`;
+        
       const finalResp = await callOpenAI(openAIKey, finalPrompt);
       setFinalResponse(finalResp);
     } catch (error) {
